@@ -12,7 +12,7 @@ async function rework() {
             <tr class="text-white bg-[#2f382e] h-2 hover:duration-150 duration-300 hover:saturate-200 hover:drop-shadow-sm whitespace-nowrap  hover:scale-110">
                 <td class="rounded-l pl-2 pr-2 text-left"> #${index + 1} </td>
                 <td class="text-left">
-                <a class="block hover:underline" href="/profiles/profile.html#${row.uID}">
+                <a class="block hover:underline" href="profiles/profile.html#${row.uID}">
                     <div class="">
                         ${row.Usernames}
                     </div>
