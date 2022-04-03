@@ -304,7 +304,10 @@
                           <span>${user.Usernames}</span>
                           ${skillImage}  
                         </div>
-                        <div class="text-[150%]">Skill Rating: ${user.SR} Δ ${user.Diff} </div>
+                        <div class="flex justify-between">
+                          <div class="text-[150%]">Skill Rating: ${user.SR} Δ ${user.Diff} </div>
+                          <div class="scale-[550%] text-gray-400 opacity-30 justify-self-end self-end pr-7 pb-2">#${index + 1}</div>
+                        </div>
                         <hr />
                         <div class="">${user.Usernames}'s Title: ${user.Title}</div>
                         <br>
