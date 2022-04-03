@@ -21,10 +21,10 @@
 <body class="bg-[#1c1719]">
   <div class="h-auto">
     <ul class="flex bg-[#ff66ab] text-[125%] align- place-content-center h-[4.3rem] items-center gap-16 max-h-auto py-2 w-[100vw] text-white">
-      <li class="duration-200 hover:duration-150 hover:scale-150"><a href="home.html">Home</a></li>
-      <li class="duration-200 hover:duration-150 hover:scale-150"><a href="lists/prework.html">Pre-Rework</a></li>
-      <li class="duration-200 hover:duration-150 hover:scale-150"><a href="lists/rework.html">Rework Ready</a></li>
-      <li class="duration-200 hover:duration-150 hover:scale-150"><a href="lists/bounty.html">Bounty List</a></li>
+      <li class="duration-200 hover:duration-150 hover:scale-150"><a href="../home.html">Home</a></li>
+      <li class="duration-200 hover:duration-150 hover:scale-150"><a href="../lists/prework.html">Pre-Rework</a></li>
+      <li class="duration-200 hover:duration-150 hover:scale-150"><a href="../lists/rework.html">Rework Ready</a></li>
+      <li class="duration-200 hover:duration-150 hover:scale-150"><a href="../lists/bounty.html">Bounty List</a></li>
       <div class="autocomplete text-white">
         <input class="px-4" id="myInput" type="text" placeholder="Search player...">
       </div>
@@ -32,7 +32,7 @@
     </ul>
     <div class="bg-[#2a2226] max-w-[1000px] mx-auto pb-4 rounded-b">
       <div class="">
-        <img src="srbanner.png">
+        <img src="../srbanner.png">
       </div>
       <div class="">
         <div class="bg-[#382e32] rounded-lg mx-5 mt-5">
@@ -193,25 +193,25 @@
             let skillImage = ""
             let skillRating = parseInt(user.SR.replace(/,/g, ''), 10)
             if (skillRating >= 0 && skillRating < 1000) {
-              skillImage = `<img ${skillClass} src="ranks/0-999.png">`
+              skillImage = `<img ${skillClass} src="../ranks/0-999.png">`
             } else if (skillRating >= 1000 && skillRating < 1500) {
-              skillImage = `<img ${skillClass} src="ranks/1000-1499.png">`
+              skillImage = `<img ${skillClass} src="../ranks/1000-1499.png">`
             } else if (skillRating >= 1500 && skillRating < 2000) {
-              skillImage = `<img ${skillClass} src="ranks/1500-1999.png">`
+              skillImage = `<img ${skillClass} src="../ranks/1500-1999.png">`
             } else if (skillRating >= 2000 && skillRating < 2500) {
-              skillImage = `<img ${skillClass} src="ranks/2000-2499.png">`
+              skillImage = `<img ${skillClass} src="../ranks/2000-2499.png">`
             } else if (skillRating >= 2500 && skillRating < 3000) {
-              skillImage = `<img ${skillClass} src="ranks/2500-2999.png">`
+              skillImage = `<img ${skillClass} src="../ranks/2500-2999.png">`
             } else if (skillRating >= 3000 && skillRating < 3500) {
-              skillImage = `<img ${skillClass} src="ranks/3000-3499.png">`
+              skillImage = `<img ${skillClass} src="../ranks/3000-3499.png">`
             } else if (skillRating >= 3500 && skillRating < 4000 && (user.Title != "Honorary GM")) {
-              skillImage = `<img ${skillClass} src="ranks/3500-3999.png">`
+              skillImage = `<img ${skillClass} src="../ranks/3500-3999.png">`
             } else if (skillRating >= 4000 && skillRating < 4200 && user.Title == "GM Candidate") {
-              skillImage = `<img ${skillClass} src="ranks/4000-4199.png">`
+              skillImage = `<img ${skillClass} src="../ranks/4000-4199.png">`
             } else if (skillRating >= 3000 && skillRating < 4400 && (user.Title == "Grandmaster" || user.Title == "Honorary GM")) {
-              skillImage = `<img ${skillClass} src="ranks/4000-4399.png">`
+              skillImage = `<img ${skillClass} src="../ranks/4000-4399.png">`
             } else if (skillRating >= 4400) {
-              skillImage = `<img ${skillClass} src="ranks/4400.png">`
+              skillImage = `<img ${skillClass} src="../ranks/4400.png">`
             }
             console.log(user.SR)
             document.title = 'Profile View ' + user.Usernames
