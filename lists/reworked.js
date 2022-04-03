@@ -1,3 +1,4 @@
+localStorage.setItem("sort", "SR");
 let request = new XMLHttpRequest();
 request.onreadystatechange = (() => { // TODO Unnecessary to keep requesting for new data; store on finished request event then sort on user change event
     if (request.readyState == 4 && request.status == 200) {
@@ -73,13 +74,15 @@ request.onreadystatechange = (() => { // TODO Unnecessary to keep requesting for
 });
 
 let onChangeView = ((args) => {
-    if (args) {
-        localStorage.setItem("sort", args);
-    } else if (!localStorage.getItem("sort")) {
-        localStorage.setItem("sort", "SR");
+    if (localStorage.getItem("sort") != args) {
+        if (args) {
+            localStorage.setItem("sort", args);
+        } else if (!localStorage.getItem("sort")) {
+            localStorage.setItem("sort", "SR");
+        }
+        request.open("GET", "https://docs.google.com/spreadsheets/d/1s-ItBZwDzWb_taDPD2L2jrUbNzl4pxjSgXcE5dza4tc/export?format=csv&id=1s-ItBZwDzWb_taDPD2L2jrUbNzl4pxjSgXcE5dza4tc&gid=1043073592", true);
+        request.send();
     }
-    request.open("GET", "https://docs.google.com/spreadsheets/d/1s-ItBZwDzWb_taDPD2L2jrUbNzl4pxjSgXcE5dza4tc/export?format=csv&id=1s-ItBZwDzWb_taDPD2L2jrUbNzl4pxjSgXcE5dza4tc&gid=1043073592", true);
-    request.send();
 });
 
 onChangeView();
