@@ -1,0 +1,50 @@
+<!doctype html>
+<html class="overflow-x-hidden h-full" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>o!c-SR Bounty</title>
+    <script src="https://cdn.rawgit.com/Keyang/node-csvtojson/d41f44aa/browser/csvtojson.min.js"> </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="/profiles/search.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+</head>
+
+<body>
+    <ul class="flex bg-[#61c1f1] text-[125%] align- place-content-center h-[4.3rem] items-center gap-16 max-h-auto py-2 w-[100vw] ">
+        <li class="duration-200 hover:duration-150 hover:scale-150"><a href="../home.html">Home</a></li>
+        <li class="duration-200 hover:duration-150 hover:scale-150"><a href="../lists/prework.html">Pre-Rework</a></li>
+        <li class="duration-200 hover:duration-150 hover:scale-150"><a href="../lists/rework.html">Rework Ready</a></li>
+        <li class="duration-200 hover:duration-150 hover:scale-150"><a href="../lists/bounty.html">Bounty List</a></li>
+        <div class="autocomplete text-white">
+            <input class="px-4" id="myInput" type="text" placeholder="Search player...">
+        </div>
+
+    </ul>
+    <div class="flex justify-center  w-auto h-screen">
+        <img src="https://media4.giphy.com/media/dsu5N2Hc6B09hTs4JX/giphy.gif?cid=ecf05e4768dy7ougf5dyuwzt2a1s5poejwlmzzbf1lpa6j65&rid=giphy.gif&ct=g"></img>
+    </div>
+    <script src="../profiles/search.js"></script>
+    <script>
+        let usernames = []
+        let aurl = "https://docs.google.com/spreadsheets/d/1s-ItBZwDzWb_taDPD2L2jrUbNzl4pxjSgXcE5dza4tc/export?format=csv&id=1s-ItBZwDzWb_taDPD2L2jrUbNzl4pxjSgXcE5dza4tc&gid=308409034"
+        fetch(aurl).then(result => result.text()).then(function (csvtotext) {
+            return csv().fromString(csvtotext);
+        }).then(function (csv) {
+            csv.forEach(function (row, index) {
+                usernames.push(row.Usernames)
+            })
+        })
+        autocomplete(document.getElementById('myInput'), usernames)
+    </script>
+</body>
+
+</html>

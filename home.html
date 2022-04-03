@@ -1,0 +1,108 @@
+<!doctype html>
+<html class="overflow-x-hidden h-full" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>o!c-SR Home</title>
+    <script src="https://cdn.rawgit.com/Keyang/node-csvtojson/d41f44aa/browser/csvtojson.min.js"> </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="/profiles/search.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+</head>
+
+<body class="h-screen w-screen bg-[url(https://relink.granbluefantasy.jp/assets/image/common/common/artwork/artwork_1.jpg?20211210151418)] bg-cover bg-fixed">
+    <div class="bg-[#2a222680] bg-cover bg-fixed min-h-screen">
+        <div class="h-auto ">
+            <ul class="bg-gradient-to-b from-[#2a2226] to-transparent flex text-[125%] align- place-content-center h-[4.3rem] items-center gap-16 max-h-auto py-2 w-[100vw] text-gray-400">
+                <li class="duration-200 hover:duration-150 hover:scale-150"><a href="../home.html">Home</a></li>
+                <li class="duration-200 hover:duration-150 hover:scale-150"><a href="../lists/prework.html">Pre-Rework</a></li>
+                <li class="duration-200 hover:duration-150 hover:scale-150"><a href="../lists/rework.html">Rework Ready</a></li>
+                <li class="duration-200 hover:duration-150 hover:scale-150"><a href="../lists/bounty.html">Bounty List</a></li>
+                <div class="autocomplete text-white">
+                    <input class="px-4" id="myInput" type="text" placeholder="Search player...">
+                </div>
+
+            </ul>
+        </div>
+        <!-- <div class="bg-[#2a2226] max-w-[1000px] mx-auto pb-4 rounded-b">
+        <div class="">
+            <img src="/srbanner.png">
+        </div>
+        </div> -->
+        <div class="  w-full h-[calc(100%-4.3rem)] pb-5">
+            <div class="text-white text-center text-6xl font-bold font-serif">osu!catch Skill Rating Project</div>
+            <br>
+            <div></div>
+            <div class="bg-[#2a222675] max-w-[1000px] mx-auto h-auto rounded-lg my-5">
+                <div class="font-medium text-2xl text-white text-center mx-16 py-5">
+                    <p>The Skill Rating Project's goal is to use what readily available information we can get our hands on and adapt it into an osu!skills form of Skill Breakdown so that the Average Player can better spot their strengths and weaknesses.</p><br>
+                    <p>In comparison to the Performance System baked into osu!, our rough Multi-Skill System displays Six Different Skills with which we have basic things in place to do as well of a job at Estimating player proficiency at each skill.
+                    </p>
+                </div>
+            </div>
+            <div class="bg-[#2a222650] rounded-lg  text-white place-content-center max-w-[1000px] mx-auto">
+                <h1 class="bg-[#2a222650] font-bold text-center px-5 py-5 rounded-t-lg text-lg">
+                    All of the following skills are balanced with community feedback into a single value. <br>It's not always going to be accurate as we do not have all the tools neccesary to make this from scratch.
+                </h1>
+                <div class="grid grid-flow-col ">
+                    <div class="mx-16 py-5 grid grid-rows-6 gap-5">
+                        <div class="order-first">RFX</div>
+                        <div class="order-1">TEN</div>
+                        <div class="order-2">STA</div>
+                        <div class="order-3">ACC</div>
+                        <div class="order-4">REA</div>
+                        <div class="order-5">PRE</div>
+                    </div>
+                    <div class="mx-16 py-5 grid grid-rows-6 gap-5">
+                        <div class="order-first">Reflexes</div>
+                        <div class="order-1">Tenacity</div>
+                        <div class="order-2">Stamina</div>
+                        <div class="order-3">Accuracy</div>
+                        <div class="order-4">Reading</div>
+                        <div class="order-5">Precision</div>
+                    </div>
+                    <div class="mx-16 py-5 grid grid-rows-6 gap-5 text-center">
+                        <div class="order-first">Approach Rate Data taken from Top 100 Scores on profile (by pp), Weighted by Descending AR, Calculated based on Exponential Curve</div>
+                        <div class="order-1">Calculated by Profile Performance (50%) and Profile Map Difficulty (50%, Weighted by Descending Map Difficulty) based on Exponential Curve</div>
+                        <div class="order-2">Performance Data and Map Length Data taken from Top 100 Scores (by pp), Calculated by Exponential Curve with added weight to Tenacity (50%)</div>
+                        <div class="order-3">Mixture of Profile Accuracy (60%) and Tenacity (40%)</div>
+                        <div class="order-4">Human Quantified Estimation of any <a class="text-blue-300">Convert</a> / <a class="text-green-300 ">EZ-Mod</a> / <a class="text-red-300">Low-AR</a> / <a class="text-amber-300">HD-Mod</a> scores</div>
+                        <div class="order-5">Performance Data and Circle Size Data taken from Top 100 Scores (by pp), Calculated by Exponential Curve weighted by Circle Size (50%) and Tenacity (50%)</div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="bg-[#2a222650] rounded-lg font-bold text-white place-content-center max-w-[1000px] mx-auto my-5 p-5 text-center">
+                This project was started and is run by <a class="text-blue-500 hover:underline text-lg" href="https://osu.ppy.sh/users/8611935" target="self">Stats-Kun</a>.<br>
+                With the help from <a class="text-red-300 hover:underline" href="https://osu.ppy.sh/users/14544646" target="self">Mario564</a>, <a class="text-red-300 hover:underline" href="https://osu.ppy.sh/users/9239206" target="self">Tomato</a>, <a class="text-red-300 hover:underline" href="https://osu.ppy.sh/users/6403823" target="self">zove</a> and <a class="text-red-300 hover:underline" href="https://osu.ppy.sh/users/4586304" target="self">CyCeph</a>.
+            </div>
+            <div class="opacity-50 bottom-2 right-3 text-xs fixed ">Website made by CyCeph with the help from Haxorsnake</div>
+
+        </div>
+
+
+    </div>
+    <script src="../profiles/search.js"></script>
+    <script>
+        let usernames = []
+        let aurl = "https://docs.google.com/spreadsheets/d/1s-ItBZwDzWb_taDPD2L2jrUbNzl4pxjSgXcE5dza4tc/export?format=csv&id=1s-ItBZwDzWb_taDPD2L2jrUbNzl4pxjSgXcE5dza4tc&gid=308409034"
+        fetch(aurl).then(result => result.text()).then(function (csvtotext) {
+            return csv().fromString(csvtotext);
+        }).then(function (csv) {
+            csv.forEach(function (row, index) {
+                usernames.push(row.Usernames)
+            })
+        })
+        autocomplete(document.getElementById('myInput'), usernames)
+    </script>
+</body>
+
+</html>
