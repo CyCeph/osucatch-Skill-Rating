@@ -1,94 +1,104 @@
-<!doctype html>
+<!DOCTYPE html>
 <html class="overflow-x-hidden h-full" lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
     <title>o!c-SR Pre-Rework</title>
-    <script src="https://cdn.rawgit.com/Keyang/node-csvtojson/d41f44aa/browser/csvtojson.min.js"> </script>
+    <script src="https://cdn.rawgit.com/Keyang/node-csvtojson/d41f44aa/browser/csvtojson.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="../profiles/search.css">
-    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
-    <link rel="manifest" href="../site.webmanifest">
-    <link rel="mask-icon" href="../safari-pinned-tab.svg" color="#5bbad5">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="theme-color" content="#ffffff">
-</head>
+    <link rel="stylesheet" href="../profiles/search.css" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png" />
+    <link rel="manifest" href="../site.webmanifest" />
+    <link rel="mask-icon" href="../safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+  </head>
 
-<body class="bg-[#171c17]">
+  <body class="bg-[#171c17]">
     <div class="h-auto">
-        <ul class="flex bg-[#73ff66] text-[125%] align- place-content-center h-[4.3rem] items-center gap-16 max-h-auto py-2 w-[100vw]">
-            <li class="duration-200 hover:duration-150 hover:scale-150"><a href="../home.html">Home</a></li>
-            <li class="duration-200 hover:duration-150 hover:scale-150"><a href="#">Pre-Rework</a></li>
-            <li class="duration-200 hover:duration-150 hover:scale-150"><a href="rework.html">Rework Ready</a></li>
-            <li class="duration-200 hover:duration-150 hover:scale-150"><a href="bounty.html">Bounty List</a></li>
-            <div class="autocomplete text-white">
-                <input class="px-4" id="myInput" type="text" placeholder="Search player...">
-            </div>
-        </ul>
-        <div class="bg-[#232a22] max-w-[1000px] mx-auto pb-4 rounded-b  flex justify-center items-center flex-col ">
-            <div class="bg-[#354d33] rounded-b-lg text-4xl text-white w-[96%] mx-5 py-8">
-                <h1 style="text-align: center;">osu!catch Skill Rating</h1>
-                <h2 style="text-align: center;">Pre-Rework</h2>
-                <p class="text-sm text-center pt-5">Note; not all players are added. If you wish to get added, you could ask so in the <a class="text-teal-400 hover:underline" href="https://discord.gg/PQknGc5" target="self">Discord Server</a>.</p>
-            </div>
-
-            <div class="">
-                <table style="border-spacing: 0 0.25rem; border-collapse: separate;" class="mx-5 rounded">
-                    <thead>
-                        <tr class="text-white">
-                            <th class="px-2"></th>
-                            <th class="px-2"></th>
-                            <th class="px-2">
-                                Performance
-                            </th>
-                            <th class="px-2">
-                                Skill Rating
-                            </th>
-                            <th class="px-2">
-                                Title
-                            </th>
-                            <th class="px-2">
-                                Accuracy
-                            </th>
-                            <th class="px-2">
-                                Star Rating
-                            </th>
-                            <th class="px-2">
-                                Circle Size
-                            </th>
-                            <th class="px-2">
-                                Approach Rate
-                            </th>
-                            <th class="px-2">
-                                Length
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-center">
-                    </tbody>
-                </table>
-            </div>
+      <ul class="flex bg-[#73ff66] text-[125%] align- place-content-center h-[4.3rem] items-center gap-16 max-h-auto py-2 w-[100vw]">
+        <li class="duration-200 hover:duration-150 hover:scale-150">
+          <a href="../home.html">Home</a>
+        </li>
+        <li class="duration-200 hover:duration-150 hover:scale-150">
+          <a href="#">Pre-Rework</a>
+        </li>
+        <li class="duration-200 hover:duration-150 hover:scale-150">
+          <a href="rework.html">Rework Ready</a>
+        </li>
+        <li class="duration-200 hover:duration-150 hover:scale-150">
+          <a href="bounty.html">Bounty List</a>
+        </li>
+        <div class="autocomplete text-white">
+          <input class="px-4" id="myInput" type="text" placeholder="Search player..." />
         </div>
-    </div>
+      </ul>
+      <div class="bg-[#232a22] max-w-[1000px] mx-auto pb-4 rounded-b flex justify-center items-center flex-col">
+        <div class="bg-[#354d33] rounded-b-lg text-4xl text-white w-[96%] mx-5 py-8">
+          <h1 style="text-align: center">osu!catch Skill Rating</h1>
+          <h2 style="text-align: center">Pre-Rework</h2>
+          <p class="text-sm text-center pt-5">
+            Note; not all players are added. If you wish to get added, you could ask so in the
+            <a class="text-teal-400 hover:underline" href="https://discord.gg/PQknGc5" target="self">Discord Server</a>.
+          </p>
+        </div>
 
+        <div class="">
+          <table style="border-spacing: 0 0.25rem; border-collapse: separate" class="mx-5 rounded">
+            <thead>
+              <tr class="text-white">
+                <th class="px-2"></th>
+                <th class="px-2"></th>
+                <th class="px-2 cursor-pointer hover:text-[#73ff6675] hover:scale-110 duration-200 hover:duration-150">
+                  <a onclick="onChangeView('PP');">Performance</a>
+                </th>
+                <th class="px-2 cursor-pointer hover:text-[#73ff6675] hover:scale-110 duration-200 hover:duration-150">
+                  <a onclick="onChangeView('SR');">Skill Rating</a>
+                </th>
+                <th class="px-2 cursor-pointer hover:text-[#73ff6675] hover:scale-110 duration-200 hover:duration-150">
+                  <a onclick="onChangeView('Title');">Title</a>
+                </th>
+                <th class="px-2 cursor-pointer hover:text-[#73ff6675] hover:scale-110 duration-200 hover:duration-150">
+                  <a onclick="onChangeView('Acc (%)');">Accuracy</a>
+                </th>
+                <th class="px-2 cursor-pointer hover:text-[#73ff6675] hover:scale-110 duration-200 hover:duration-150">
+                  <a onclick="onChangeView('✰R');">Star Rating</a>
+                </th>
+                <th class="px-2 cursor-pointer hover:text-[#73ff6675] hover:scale-110 duration-200 hover:duration-150">
+                  <a onclick="onChangeView('CS');">Circle Size</a>
+                </th>
+                <th class="px-2 cursor-pointer hover:text-[#73ff6675] hover:scale-110 duration-200 hover:duration-150">
+                  <a onclick="onChangeView('AR');">Approach Rate</a>
+                </th>
+                <th class="px-2 cursor-pointer hover:text-[#73ff6675] hover:scale-110 duration-200 hover:duration-150">
+                  <a onclick="onChangeView('Length');">Length</a>
+                </th>
+              </tr>
+            </thead>
+            <tbody class="text-center"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
     <script src="preworked.js"></script>
     <script src="../profiles/search.js"></script>
     <script>
-        let usernames = []
-        let aurl = "https://docs.google.com/spreadsheets/d/1s-ItBZwDzWb_taDPD2L2jrUbNzl4pxjSgXcE5dza4tc/export?format=csv&id=1s-ItBZwDzWb_taDPD2L2jrUbNzl4pxjSgXcE5dza4tc&gid=308409034"
-        fetch(aurl).then(result => result.text()).then(function (csvtotext) {
-            return csv().fromString(csvtotext);
-        }).then(function (csv) {
-            csv.forEach(function (row, index) {
-                usernames.push(row.Usernames)
-            })
+      let usernames = [];
+      let aurl = "https://docs.google.com/spreadsheets/d/1s-ItBZwDzWb_taDPD2L2jrUbNzl4pxjSgXcE5dza4tc/export?format=csv&id=1s-ItBZwDzWb_taDPD2L2jrUbNzl4pxjSgXcE5dza4tc&gid=308409034";
+      fetch(aurl)
+        .then((result) => result.text())
+        .then(function (csvtotext) {
+          return csv().fromString(csvtotext);
         })
-        autocomplete(document.getElementById('myInput'), usernames)
+        .then(function (csv) {
+          csv.forEach(function (row, index) {
+            usernames.push(row.Usernames);
+          });
+        });
+      autocomplete(document.getElementById("myInput"), usernames);
     </script>
-</body>
-
+  </body>
 </html>

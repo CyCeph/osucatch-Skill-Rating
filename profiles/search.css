@@ -1,88 +1,87 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .nodan {
-    opacity: 20%;
-    filter: saturate(0.2);
+  opacity: 20%;
+  filter: saturate(0.2);
 }
 
-#dans>* {
-    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+#dans > * {
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
 .autocomplete {
-    /*the container must be positioned relative:*/
-    position: relative;
-    display: inline-block;
+  /*the container must be positioned relative:*/
+  position: relative;
+  display: inline-block;
 }
 
 #TEST {
-    color: red
+  color: red;
 }
 
 /* #TEST:hover {
     transform: scale(1.5);
 } */
 
-
 input {
-    border: 1px solid transparent;
-    background-color: #f1f1f1;
-    padding: 10px;
-    font-size: 16px;
-    /* border-radius: 4rem; */
-    border-radius: 1rem;
-    transition: 200ms;
+  border: 1px solid transparent;
+  background-color: #f1f1f1;
+  padding: 10px;
+  font-size: 16px;
+  /* border-radius: 4rem; */
+  border-radius: 1rem;
+  transition: 200ms;
 }
 
 input:hover {
-    /* font-size: 125%; */
-    transform: scale(1.25);
-    transition-duration: 150ms;
-    transition-timing-function: ease-in-out;
+  /* font-size: 125%; */
+  transform: scale(1.25);
+  transition-duration: 150ms;
+  transition-timing-function: ease-in-out;
 }
 
-input[type=text] {
-    background-color: #1c1719;
-    width: 100%;
+input[type="text"] {
+  background-color: #1c1719;
+  width: 100%;
 }
 
-input[type=submit] {
-    background-color: DodgerBlue;
-    color: #fff;
+input[type="submit"] {
+  background-color: DodgerBlue;
+  color: #fff;
 }
 
 .autocomplete-items {
-    position: absolute;
-    border: 1px solid rgb(24, 24, 24);
-    border-bottom: none;
-    border-top: none;
-    z-index: 99;
-    /*position the autocomplete items to be the same width as the container:*/
-    top: 100%;
-    left: 0;
-    right: 0;
+  position: absolute;
+  border: 1px solid rgb(24, 24, 24);
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 100%;
+  left: 0;
+  right: 0;
 }
 
 .autocomplete-items div {
-    padding: 10px;
-    cursor: pointer;
-    background-color: rgb(32, 32, 32);
-    border-bottom: 1px solid rgb(24, 24, 24);
+  padding: 10px;
+  cursor: pointer;
+  background-color: rgb(32, 32, 32);
+  border-bottom: 1px solid rgb(24, 24, 24);
 }
 
 .autocomplete-items div:hover {
-    /*when hovering an item:*/
-    background-color: rgb(24, 24, 24);
+  /*when hovering an item:*/
+  background-color: rgb(24, 24, 24);
 }
 
 .autocomplete-active {
-    /*when navigating through the items using the arrow keys:*/
-    background-color: DodgerBlue !important;
-    color: #ffffff;
+  /*when navigating through the items using the arrow keys:*/
+  background-color: DodgerBlue !important;
+  color: #ffffff;
 }
 
 #navi {
-    text-shadow: -0.5px -0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000;
+  text-shadow: -0.5px -0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000;
 }
