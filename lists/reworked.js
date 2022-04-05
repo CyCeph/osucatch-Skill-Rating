@@ -56,7 +56,7 @@ let showData = async () => {
         resolve(json);
       });
     };
-  
+
     let createTable = (sortedJson) => {
       return new Promise((resolve) => {
         let html = "";
