@@ -36,7 +36,14 @@
           <div class="bg-[#382e32] rounded-lg m-5 pb-5">
             <div class="grid gap-2 grid-cols-2">
               <div id="userimage" class="my-5"></div>
-              <div id="userinfo" class="my-5"></div>
+              <div class="grid grid-rows-2 -space-y-8 pr-5 pt-2">
+                <div class="inline-block">
+                  <div id="userinfo" class="absolute"></div>
+                  <div id="ranking" class="relative object-right"></div>
+                </div>
+
+                <div id="userinfo2" class="my-5"></div>
+              </div>
             </div>
             <hr />
 
@@ -114,16 +121,20 @@
 
         const userimage = document.getElementById("userimage");
         const userinfo = document.getElementById("userinfo");
+        const userinfo2 = document.getElementById("userinfo2");
         const profileData = document.getElementById("profileData");
         const profileData2 = document.getElementById("profileData2");
+        const ranking = document.getElementById("ranking");
         const ctx = document.getElementById("radar");
 
         const url = !rework ? "https://docs.google.com/spreadsheets/d/1s-ItBZwDzWb_taDPD2L2jrUbNzl4pxjSgXcE5dza4tc/export?format=csv&id=1s-ItBZwDzWb_taDPD2L2jrUbNzl4pxjSgXcE5dza4tc&gid=308409034" : "https://docs.google.com/spreadsheets/d/1s-ItBZwDzWb_taDPD2L2jrUbNzl4pxjSgXcE5dza4tc/export?format=csv&id=1s-ItBZwDzWb_taDPD2L2jrUbNzl4pxjSgXcE5dza4tc&gid=1043073592";
 
         userimage.innerHTML = "";
         userinfo.innerHTML = "";
+        userinfo2.innerHTML = "";
         profileData.innerHTML = "";
         profileData2.innerHTML = "";
+        ranking.innerHTML = "";
 
         const userArray = [];
 
@@ -291,18 +302,22 @@
                           <span>${user.Usernames}</span>
                           ${skillImage}  
                         </div>
-                        <div class="flex justify-between">
+                        <div class="">
                           <div class="text-[150%]">Skill Rating: ${user.SR} Δ ${user.Diff} </div>
-                          <div class="scale-[550%] text-gray-400 opacity-30 justify-self-end self-end pr-7 pb-2">#${index + 1}</div>
                         </div>
-                        <hr />
-                        <div class="">${user.Usernames}'s Title: ${user.Title}</div>
-                        <br>
-                        <div class="">Performance Points: ${user.PP}pp</div> 
-                        <div class="">Last update: ${user["Last update"]}</div>
-                        <div class="hover:underline underline-offset-2 hover:text-[#ff66ab]"><a href="https://osu.ppy.sh/users/${user.uID}" target="self">Official Player Profile</a>
                       </div> 
                   `;
+
+                userinfo2.innerHTML += `
+                  <div class="text-white">
+                    <hr />
+                    <div class="text-[110%]">${user.Usernames}'s Title: ${user.Title}</div>
+                    <br>
+                    <div class="">Performance Points: ${user.PP}pp</div> 
+                    <div class="">Last update: ${user["Last update"]}</div>
+                    <div class="hover:underline underline-offset-2 hover:text-[#ff66ab]"><a href="https://osu.ppy.sh/users/${user.uID}" target="self">Official Player Profile</a>
+                  </div> 
+                   `;
 
                 profileData.innerHTML += `
                 <div class="text-center">
@@ -325,6 +340,11 @@
                   <div class="">Well-rounded measure: ${user.WRM}</div>
                 </div>
                 
+            `;
+
+                ranking.innerHTML += `
+                <div class="text-gray-400 opacity-30 float-right text-[550%] flex" >#${index + 1}</div>
+                <br>
             `;
               }
             });
