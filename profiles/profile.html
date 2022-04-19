@@ -212,11 +212,11 @@
                   skillImage = `<img ${skillClass} src="../ranks/2500-2999.png">`;
                 } else if (skillRating >= 3000 && skillRating < 3500) {
                   skillImage = `<img ${skillClass} src="../ranks/3000-3499.png">`;
-                } else if (skillRating >= 3500 && skillRating < 4000 && user.Title != "Honorary GM") {
+                } else if (skillRating >= 3500 && skillRating < 4000 && user.Title != "Honorary GrandMaster") {
                   skillImage = `<img ${skillClass} src="../ranks/3500-3999.png">`;
-                } else if (skillRating >= 4000 && skillRating < 4200 && user.Title == "GM Candidate") {
+                } else if (skillRating >= 4000 && skillRating < 4200 && user.Title == "GrandMaster Candidate") {
                   skillImage = `<img ${skillClass} src="../ranks/4000-4199.png">`;
-                } else if (skillRating >= 3000 && skillRating < 4400 && (user.Title == "Grandmaster" || user.Title == "Honorary GM")) {
+                } else if (skillRating >= 3000 && skillRating < 4400 && (user.Title == "GrandMaster" || user.Title == "Honorary GrandMaster")) {
                   skillImage = `<img ${skillClass} src="../ranks/4000-4399.png">`;
                 } else if (skillRating >= 4400) {
                   skillImage = `<img ${skillClass} src="../ranks/4400.png">`;
