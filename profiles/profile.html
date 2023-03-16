@@ -21,9 +21,9 @@
     <div class="h-auto">
       <ul class="flex bg-[#ff66ab] text-[125%] align- place-content-center h-[4.3rem] items-center gap-16 max-h-auto py-2 w-[100vw] text-white">
         <li class="duration-200 hover:duration-150 hover:scale-150"><a href="../home.html">Home</a></li>
-        <li class="duration-200 hover:duration-150 hover:scale-150"><a href="../lists/prework.html">Pre-Rework</a></li>
-        <li class="duration-200 hover:duration-150 hover:scale-150"><a href="../lists/rework.html">Rework Ready</a></li>
-        <li class="duration-200 hover:duration-150 hover:scale-150"><a href="../lists/bounty.html">Bounty List</a></li>
+        <li class="duration-200 hover:duration-150 hover:scale-150"><a href="../lists/rework.html">Ranking</a></li>
+        <li class="duration-200 hover:duration-150 hover:scale-150"><a href="https://docs.google.com/spreadsheets/d/1s-ItBZwDzWb_taDPD2L2jrUbNzl4pxjSgXcE5dza4tc/edit#gid=1676553494" target="self">Spreadsheet</a></li>
+        <li class="duration-200 hover:duration-150 hover:scale-150"><a href="https://discord.gg/PQknGc5" target="self">Discord</a></li>
         <div class="autocomplete text-white">
           <input class="px-4" id="myInput" type="text" placeholder="Search player..." />
         </div>
@@ -79,19 +79,14 @@
             <div class="mr-5">
               <span class="py-5 flex text-white justify-center">Profile Data</span>
               <hr />
-              <!-- divide-dashed -->
               <div class="text-white grid grid-cols-2 mt-5 text-base h-[70%]">
                 <div id="profileData" class="border-r-[0.1px]"></div>
                 <div id="profileData2" class="border-l-[0.1px]"></div>
               </div>
             </div>
-
-            <!-- <div class="absolute bottom-24 left-0 h-[5rem] w-[5rem] rounded-full bg-white m-5 leading-[5rem] text-center"
-        onclick="">Compare</div> -->
           </div>
         </div>
       </div>
-      <div class="fixed bottom-4 left-4 z-10 h-[6rem] w-[6rem] rounded-full bg-white text-center cursor-pointer flex items-center justify-center" id="rework" onclick="show(true)">Toggle Rework</div>
     </div>
     <script src="search.js"></script>
     <script>
@@ -127,7 +122,7 @@
         const ranking = document.getElementById("ranking");
         const ctx = document.getElementById("radar");
 
-        const url = !rework ? "https://docs.google.com/spreadsheets/d/1s-ItBZwDzWb_taDPD2L2jrUbNzl4pxjSgXcE5dza4tc/export?format=csv&id=1s-ItBZwDzWb_taDPD2L2jrUbNzl4pxjSgXcE5dza4tc&gid=308409034" : "https://docs.google.com/spreadsheets/d/1s-ItBZwDzWb_taDPD2L2jrUbNzl4pxjSgXcE5dza4tc/export?format=csv&id=1s-ItBZwDzWb_taDPD2L2jrUbNzl4pxjSgXcE5dza4tc&gid=1043073592";
+        const url = "https://docs.google.com/spreadsheets/d/1s-ItBZwDzWb_taDPD2L2jrUbNzl4pxjSgXcE5dza4tc/export?format=csv&id=1s-ItBZwDzWb_taDPD2L2jrUbNzl4pxjSgXcE5dza4tc&gid=1043073592";
 
         userimage.innerHTML = "";
         userinfo.innerHTML = "";
@@ -322,22 +317,46 @@
                 profileData.innerHTML += `
                 <div class="text-center">
                   
-                  <div class="">Weighted CS: ${user.CS}</div>
+                  <div class="hover:underline">
+                    <a title="Weighted Circle Size">
+                      Weighted CS: ${user.CS}
+                    </a>
+                  </div>
                   <br>
-                  <div class="">Weighted AR: ${user.AR}</div>
+                  <div class="hover:underline">
+                    <a title="Weighted Approach Rate">
+                    Weighted AR: ${user.AR}
+                    </a>
+                  </div>
                   <br>
-                  <div class="">Weighted ✰Rating: ${user["✰R"]}</div>
+                  <div class="hover:underline">
+                    <a title="Weighted Star Rating">
+                    Weighted ✰Rating: ${user["✰R"]}
+                    </a>
+                  </div>
                   <br>
-                  <div class="">Weighted Map Length: ${user.Length}</div>
+                  <div class="hover:underline">
+                    <a title="Weighted Map length">
+                    Weighted Map Length: ${user.Length}
+                    </a>
+                  </div>
                 </div>
                 
             `;
 
                 profileData2.innerHTML += `
                 <div class="text-center">
-                  <div class="">Weighted Acc: ${user["Acc (%)"]}</div>
+                  <div class="hover:underline">
+                    <a title="Weighted Accuracy">
+                    Weighted Acc: ${user["Acc (%)"]}
+                  </a>
+                  </div>
                   <br>
-                  <div class="">Well-rounded measure: ${user.WRM}</div>
+                  <div class="">
+                    <a title="Measure determined by Logarythmic formula on a Standard Deviation of all Statistics aside from Accuracy">
+                    Well-rounded measure: ${user.WRM}
+                  </a>
+                  </div>
                 </div>
                 
             `;
