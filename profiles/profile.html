@@ -1,376 +1,459 @@
 <!DOCTYPE html>
 <html class="overflow-x-hidden h-full" lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title>Profile View</title>
-    <script src="https://cdn.rawgit.com/Keyang/node-csvtojson/d41f44aa/browser/csvtojson.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="search.css" />
-    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png" />
-    <link rel="manifest" href="../site.webmanifest" />
-    <link rel="mask-icon" href="../safari-pinned-tab.svg" color="#5bbad5" />
-    <meta name="msapplication-TileColor" content="#da532c" />
-    <meta name="theme-color" content="#ffffff" />
-  </head>
 
-  <body class="bg-[#1c1719]">
-    <div class="h-auto">
-      <ul class="flex bg-[#ff66ab] text-[125%] align- place-content-center h-[4.3rem] items-center gap-16 max-h-auto py-2 w-[100vw] text-white">
-        <li class="duration-200 hover:duration-150 hover:scale-150"><a href="../home.html">Home</a></li>
-        <li class="duration-200 hover:duration-150 hover:scale-150"><a href="../lists/rework.html">Ranking</a></li>
-        <li class="duration-200 hover:duration-150 hover:scale-150"><a href="https://docs.google.com/spreadsheets/d/1s-ItBZwDzWb_taDPD2L2jrUbNzl4pxjSgXcE5dza4tc/edit#gid=1676553494" target="self">Spreadsheet</a></li>
-        <li class="duration-200 hover:duration-150 hover:scale-150"><a href="https://discord.gg/PQknGc5" target="self">Discord</a></li>
-        <div class="autocomplete text-white">
-          <input class="px-4" id="myInput" type="text" placeholder="Search player..." />
-        </div>
-      </ul>
-      <div class="bg-[#2a2226] max-w-[1000px] mx-auto pb-4 rounded-b">
-        <div class="">
-          <img src="../srbanner.png" />
-        </div>
-        <div class="">
-          <div class="bg-[#382e32] rounded-lg m-5 pb-5">
-            <div class="grid gap-2 grid-cols-2">
-              <div id="userimage" class="my-5"></div>
-              <div class="grid grid-rows-2 -space-y-8 pr-5 pt-2">
-                <div class="inline-block">
-                  <div id="userinfo" class="absolute"></div>
-                  <div id="ranking" class="relative object-right"></div>
-                </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Profile View</title>
+  <script src="https://cdn.rawgit.com/Keyang/node-csvtojson/d41f44aa/browser/csvtojson.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="search.css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png" />
+  <link rel="manifest" href="../site.webmanifest" />
+  <link rel="mask-icon" href="../safari-pinned-tab.svg" color="#5bbad5" />
+  <meta name="msapplication-TileColor" content="#da532c" />
+  <meta name="theme-color" content="#ffffff" />
+</head>
 
-                <div id="userinfo2" class="my-5"></div>
+<body class="bg-[#1c1719]">
+  <div class="h-auto">
+    <ul
+      class="flex bg-[#ff66ab] text-[125%] align- place-content-center h-[4.3rem] items-center gap-16 max-h-auto py-2 w-[100vw] text-white">
+      <li class="duration-200 hover:duration-150 hover:scale-150">
+        <a href="../home.html">Home</a>
+      </li>
+      <li class="duration-200 hover:duration-150 hover:scale-150">
+        <a href="../lists/rework.html">Ranking</a>
+      </li>
+      <li class="duration-200 hover:duration-150 hover:scale-150">
+        <a href="https://docs.google.com/spreadsheets/d/1s-ItBZwDzWb_taDPD2L2jrUbNzl4pxjSgXcE5dza4tc/edit#gid=1676553494"
+          target="self">Spreadsheet</a>
+      </li>
+      <li class="duration-200 hover:duration-150 hover:scale-150">
+        <a href="https://discord.gg/PQknGc5" target="self">Discord</a>
+      </li>
+      <div class="autocomplete text-white">
+        <input class="px-4" id="myInput" type="text" placeholder="Search player..." />
+      </div>
+    </ul>
+    <div class="bg-[#2a2226] max-w-[1000px] mx-auto pb-4 rounded-b">
+      <div class="">
+        <img src="../srbanner.png" />
+      </div>
+      <div class="">
+        <div class="bg-[#382e32] rounded-lg m-5 pb-5">
+          <div class="grid gap-2 grid-cols-2">
+            <div id="userimage" class="my-5"></div>
+            <div class="grid grid-rows-2 -space-y-8 pr-5 pt-2">
+              <div class="inline-block">
+                <div id="userinfo" class="absolute"></div>
+                <div id="ranking" class="relative object-right"></div>
               </div>
-            </div>
-            <hr />
 
-            <div class="p-5 text-center self-center space-x-2 font-semibold space-y-2 justify-center items-center">
-              <div id="dans" class="font-bold text-white grid grid-flow-row gap-5 grid-cols-7 grid-rows-2 place-content-center">
-                <div id="6th Dan" class="bg-[#a4c2f4] py-3.5 rounded-3xl order-1 nodan"><a href="https://osu.ppy.sh/beatmapsets/885149#fruits/1850071" target="self">6th Dan</a></div>
-                <div id="7th Dan" class="bg-[#6d9eeb] py-3.5 rounded-3xl order-2 nodan"><a href="https://osu.ppy.sh/beatmapsets/885149#fruits/1850072" target="self">7th Dan</a></div>
-                <div id="8th Dan" class="bg-[#3c78d8] py-3.5 rounded-3xl order-3 nodan"><a href="https://osu.ppy.sh/beatmapsets/885149#fruits/1850073" target="self">8th Dan</a></div>
-                <div id="9th Dan" class="bg-[#1155cc] py-3.5 rounded-3xl order-4 nodan"><a href="https://osu.ppy.sh/beatmapsets/885149#fruits/3143922" target="self">9th Dan</a></div>
-                <div id="10th Dan" class="bg-[#38761d] py-3.5 rounded-3xl order-5 nodan"><a href="https://osu.ppy.sh/beatmapsets/885149#fruits/1850070" target="self">10th Dan</a></div>
-                <div id="Aleph Dan" class="bg-[#6aa84f] py-3.5 rounded-3xl order-6 nodan"><a href="https://osu.ppy.sh/beatmapsets/885149#fruits/1850071" target="self">Aleph Dan</a></div>
-                <div id="Beth Dan" class="bg-[#93c47d] py-3.5 rounded-3xl order-7 nodan"><a href="https://osu.ppy.sh/beatmapsets/885149#fruits/1850075" target="self">Beth Dan</a></div>
-                <div id="Ghimel Dan" class="bg-[#b6d7a8] py-3.5 rounded-3xl order-8 nodan"><a href="https://osu.ppy.sh/beatmapsets/884597#fruits/1848953" target="self">Ghimel Dan</a></div>
-                <div id="Zayin Dan" class="bg-[#ea9999] py-3.5 rounded-3xl order-9 nodan"><a href="https://osu.ppy.sh/beatmapsets/884597#fruits/1848957" target="self">Zayin Dan</a></div>
-                <div id="Lamed Dan" class="bg-[#e06666] py-3.5 rounded-3xl order-10 nodan"><a href="https://osu.ppy.sh/beatmapsets/884597#fruits/1848954" target="self">Lamed Dan</a></div>
-                <div id="Samech Dan" class="bg-[#cc0000] py-3.5 rounded-3xl order-11 nodan"><a href="https://osu.ppy.sh/beatmapsets/884597#fruits/1848955" target="self">Samech Dan</a></div>
-                <div id="Tsadi Dan" class="bg-[#990000] py-3.5 rounded-3xl order-12 nodan"><a href="https://osu.ppy.sh/beatmapsets/884597#fruits/1848956" target="self">Tsadi Dan</a></div>
-                <div id="Shin Dan" class="bg-[#000000] py-3.5 rounded-3xl order-last col-span-2 nodan"><a href="https://osu.ppy.sh/beatmapsets/884597#fruits/1872971" target="self">Shin Dan</a></div>
-              </div>
+              <div id="userinfo2" class="my-5"></div>
             </div>
-            <p class="opacity-70 text-center px-5 text-neutral-500">These are updated manually, if you have a pass over 99% you can mention it to one of the developers in the <a class="text-teal-700 hover:underline" href="https://discord.gg/PQknGc5" target="self">Discord Server</a>.</p>
           </div>
+          <hr />
 
-          <div class="bg-[#382e32] rounded-lg m-5 mt-5 grid gap-8 grid-cols-2 grid-rows-1 text-2xl h-96">
-            <div class="flex h-64 w-full justify-evenly px-5">
-              <div class="ml-5 w-[11rem] lg:w-[33rem] flex flex-col">
-                <span class="py-5 flex text-white justify-center">Skill Graph</span>
-                <hr />
-                <canvas class="mt-5" id="radar"></canvas>
-                <canvas id="radarrework" style="display: none"></canvas>
+          <div class="p-5 text-center self-center space-x-2 font-semibold space-y-2 justify-center items-center">
+            <div id="dans"
+              class="font-bold text-white grid grid-flow-row gap-5 grid-cols-7 grid-rows-2 place-content-center">
+              <div id="6th Dan" class="bg-[#a4c2f4] py-3.5 rounded-3xl order-1 nodan">
+                <a href="https://osu.ppy.sh/beatmapsets/885149#fruits/1850071" target="self">6th Dan</a>
+              </div>
+              <div id="7th Dan" class="bg-[#6d9eeb] py-3.5 rounded-3xl order-2 nodan">
+                <a href="https://osu.ppy.sh/beatmapsets/885149#fruits/1850072" target="self">7th Dan</a>
+              </div>
+              <div id="8th Dan" class="bg-[#3c78d8] py-3.5 rounded-3xl order-3 nodan">
+                <a href="https://osu.ppy.sh/beatmapsets/885149#fruits/1850073" target="self">8th Dan</a>
+              </div>
+              <div id="9th Dan" class="bg-[#1155cc] py-3.5 rounded-3xl order-4 nodan">
+                <a href="https://osu.ppy.sh/beatmapsets/885149#fruits/3143922" target="self">9th Dan</a>
+              </div>
+              <div id="10th Dan" class="bg-[#38761d] py-3.5 rounded-3xl order-5 nodan">
+                <a href="https://osu.ppy.sh/beatmapsets/885149#fruits/1850070" target="self">10th Dan</a>
+              </div>
+              <div id="Aleph Dan" class="bg-[#6aa84f] py-3.5 rounded-3xl order-6 nodan">
+                <a href="https://osu.ppy.sh/beatmapsets/885149#fruits/1850071" target="self">Aleph Dan</a>
+              </div>
+              <div id="Beth Dan" class="bg-[#93c47d] py-3.5 rounded-3xl order-7 nodan">
+                <a href="https://osu.ppy.sh/beatmapsets/885149#fruits/1850075" target="self">Beth Dan</a>
+              </div>
+              <div id="Ghimel Dan" class="bg-[#b6d7a8] py-3.5 rounded-3xl order-8 nodan">
+                <a href="https://osu.ppy.sh/beatmapsets/884597#fruits/1848953" target="self">Ghimel Dan</a>
+              </div>
+              <div id="Zayin Dan" class="bg-[#ea9999] py-3.5 rounded-3xl order-9 nodan">
+                <a href="https://osu.ppy.sh/beatmapsets/884597#fruits/1848957" target="self">Zayin Dan</a>
+              </div>
+              <div id="Lamed Dan" class="bg-[#e06666] py-3.5 rounded-3xl order-10 nodan">
+                <a href="https://osu.ppy.sh/beatmapsets/884597#fruits/1848954" target="self">Lamed Dan</a>
+              </div>
+              <div id="Samech Dan" class="bg-[#cc0000] py-3.5 rounded-3xl order-11 nodan">
+                <a href="https://osu.ppy.sh/beatmapsets/884597#fruits/1848955" target="self">Samech Dan</a>
+              </div>
+              <div id="Tsadi Dan" class="bg-[#990000] py-3.5 rounded-3xl order-12 nodan">
+                <a href="https://osu.ppy.sh/beatmapsets/884597#fruits/1848956" target="self">Tsadi Dan</a>
+              </div>
+              <div id="Shin Dan" class="bg-[#000000] py-3.5 rounded-3xl order-last col-span-2 nodan">
+                <a href="https://osu.ppy.sh/beatmapsets/884597#fruits/1872971" target="self">Shin Dan</a>
               </div>
             </div>
-            <div class="mr-5">
-              <span class="py-5 flex text-white justify-center">Profile Data</span>
+          </div>
+          <p class="opacity-70 text-center px-5 text-neutral-500">
+            These are updated manually, if you have a pass over 99% you can
+            mention it to one of the developers in the
+            <a class="text-teal-700 hover:underline" href="https://discord.gg/PQknGc5" target="self">Discord Server</a>.
+          </p>
+        </div>
+
+        <div class="bg-[#382e32] rounded-lg m-5 mt-5 grid gap-8 grid-cols-2 grid-rows-1 text-2xl h-96">
+          <div class="flex h-64 w-full justify-evenly px-5">
+            <div class="ml-5 w-[11rem] lg:w-[33rem] flex flex-col">
+              <span class="py-5 flex text-white justify-center">Skill Graph</span>
               <hr />
-              <div class="text-white grid grid-cols-2 mt-5 text-base h-[70%]">
-                <div id="profileData" class="border-r-[0.1px]"></div>
-                <div id="profileData2" class="border-l-[0.1px]"></div>
-              </div>
+              <canvas class="mt-5" id="radar"></canvas>
+              <canvas id="radarrework" style="display: none"></canvas>
+            </div>
+          </div>
+          <div class="mr-5">
+            <span class="py-5 flex text-white justify-center">Profile Data</span>
+            <hr />
+            <div class="text-white grid grid-cols-2 mt-5 text-base h-[70%]">
+              <div id="profileData" class="border-r-[0.1px]"></div>
+              <div id="profileData2" class="border-l-[0.1px]"></div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <script src="search.js"></script>
-    <script>
-      let rework = false;
-      let myRadarChart = "";
-      const regex = /#(.*)/g;
-      let username = decodeURI(document.URL.match(regex)[0]);
-      let checkUsername = username.substring(1, 9) == "USERNAME";
+  </div>
+  <script src="search.js"></script>
+  <script>
+    let rework = false;
+    let myRadarChart = "";
+    const regex = /#(.*)/g;
+    let username = decodeURI(document.URL.match(regex)[0]);
+    let checkUsername = username.substring(1, 9) == "USERNAME";
 
-      console.log(username.substring(1, 9), checkUsername);
+    const main = document.getElementById("main");
+    //main.innerHTML = "<p>Loading...</p>";
 
-      const main = document.getElementById("main");
-      //main.innerHTML = "<p>Loading...</p>";
-
-      show();
-      function show(rew) {
-        if (rew) {
-          if (!checkUsername && username.substring(1, 9) == "USERNAME") {
-            checkUsername = true;
-          }
-          rework = !rework;
-          let reworkbutton = document.getElementById("rework");
-          let color = rework ? "#ff66ab" : "#fff";
-          reworkbutton.style.backgroundColor = color;
-          myRadarChart.destroy();
+    show();
+    async function show(rew) {
+      if (rew) {
+        if (!checkUsername && username.substring(1, 9) == "USERNAME") {
+          checkUsername = true;
         }
+        rework = !rework;
+        let reworkbutton = document.getElementById("rework");
+        let color = rework ? "#ff66ab" : "#fff";
+        reworkbutton.style.backgroundColor = color;
+        myRadarChart.destroy();
+      }
 
-        const userimage = document.getElementById("userimage");
-        const userinfo = document.getElementById("userinfo");
-        const userinfo2 = document.getElementById("userinfo2");
-        const profileData = document.getElementById("profileData");
-        const profileData2 = document.getElementById("profileData2");
-        const ranking = document.getElementById("ranking");
-        const ctx = document.getElementById("radar");
+      const userimage = document.getElementById("userimage");
+      const userinfo = document.getElementById("userinfo");
+      const userinfo2 = document.getElementById("userinfo2");
+      const profileData = document.getElementById("profileData");
+      const profileData2 = document.getElementById("profileData2");
+      const ranking = document.getElementById("ranking");
+      const ctx = document.getElementById("radar");
 
-        const url = "https://docs.google.com/spreadsheets/d/1s-ItBZwDzWb_taDPD2L2jrUbNzl4pxjSgXcE5dza4tc/export?format=csv&id=1s-ItBZwDzWb_taDPD2L2jrUbNzl4pxjSgXcE5dza4tc&gid=1043073592";
+      const url =
+        "https://docs.google.com/spreadsheets/d/1s-ItBZwDzWb_taDPD2L2jrUbNzl4pxjSgXcE5dza4tc/export?format=csv&id=1s-ItBZwDzWb_taDPD2L2jrUbNzl4pxjSgXcE5dza4tc&gid=1043073592";
 
-        userimage.innerHTML = "";
-        userinfo.innerHTML = "";
-        userinfo2.innerHTML = "";
-        profileData.innerHTML = "";
-        profileData2.innerHTML = "";
-        ranking.innerHTML = "";
+      userimage.innerHTML = "";
+      userinfo.innerHTML = "";
+      userinfo2.innerHTML = "";
+      profileData.innerHTML = "";
+      profileData2.innerHTML = "";
+      ranking.innerHTML = "";
 
-        const userArray = [];
+      let userArray = [];
 
-        let actualUsername = "";
+      let actualUsername = "";
 
-        let danUrl = "https://docs.google.com/spreadsheets/d/1s-ItBZwDzWb_taDPD2L2jrUbNzl4pxjSgXcE5dza4tc/export?format=csv&id=1s-ItBZwDzWb_taDPD2L2jrUbNzl4pxjSgXcE5dza4tc&gid=637350582";
+      let danUrl =
+        "https://docs.google.com/spreadsheets/d/1s-ItBZwDzWb_taDPD2L2jrUbNzl4pxjSgXcE5dza4tc/export?format=csv&id=1s-ItBZwDzWb_taDPD2L2jrUbNzl4pxjSgXcE5dza4tc&gid=637350582";
 
-        fetch(danUrl)
-          .then((result) => result.text())
-          .then(function (csvtotext) {
-            return csv().fromString(csvtotext);
-          })
-          .then(function (csv) {
-            csv.forEach(function (row, index) {
-              let isUsername = username.substring(1, 9) == "USERNAME";
-              if (isUsername) {
-                if (row.Player == username.substring(9)) {
-                  for (const key in row) {
-                    if (Object.hasOwnProperty.call(row, key) && key != "Player" && key != "uID") {
-                      const dan = row[key];
-                      let danDiv = document.getElementById(key);
-                      if (dan == "Y") {
-                        danDiv.classList.remove("nodan");
-                      }
+      fetch(danUrl)
+        .then((result) => result.text())
+        .then(function (csvtotext) {
+          return csv().fromString(csvtotext);
+        })
+        .then(function (csv) {
+          csv.forEach(function (row, index) {
+            let isUsername = username.substring(1, 9) == "USERNAME";
+            if (isUsername) {
+              if (row.Player == username.substring(9)) {
+                for (const key in row) {
+                  if (
+                    Object.hasOwnProperty.call(row, key) &&
+                    key != "Player" &&
+                    key != "uID"
+                  ) {
+                    const dan = row[key];
+                    let danDiv = document.getElementById(key);
+                    if (dan == "Y") {
+                      danDiv.classList.remove("nodan");
                     }
                   }
                 }
-              } else {
-                if (row.uID == username.substring(1)) {
-                  for (const key in row) {
-                    if (Object.hasOwnProperty.call(row, key) && key != "Player" && key != "uID") {
-                      const dan = row[key];
-                      let danDiv = document.getElementById(key);
-                      if (dan == "Y") {
-                        danDiv.classList.remove("nodan");
-                      }
+              }
+            } else {
+              if (row.uID == username.substring(1)) {
+                for (const key in row) {
+                  if (
+                    Object.hasOwnProperty.call(row, key) &&
+                    key != "Player" &&
+                    key != "uID"
+                  ) {
+                    const dan = row[key];
+                    let danDiv = document.getElementById(key);
+                    if (dan == "Y") {
+                      danDiv.classList.remove("nodan");
                     }
                   }
                 }
               }
-            });
+            }
           });
+        });
 
-        fetch(url)
-          .then((result) => result.text())
-          .then(function (csvtotext) {
-            return csv().fromString(csvtotext);
-          })
-          .then(function (csv) {
-            csv.forEach(function (row, index) {
-              userArray.push(row.Usernames);
-              if (checkUsername) {
-                console.log(username);
-                if (row.Usernames == username.substring(9)) {
-                  checkUsername = false;
-                  actualUsername = row.uID;
-                }
-              } else {
-                actualUsername = username.substring(1);
-              }
-              if (row.uID == actualUsername) {
-                let skillClass = "class='h-16'";
-                const user = row;
-                let skillImage = "";
-                let skillRating = parseInt(user.SR.replace(/,/g, ""), 10);
-                if (skillRating >= 0 && skillRating < 1000) {
-                  skillImage = `<img ${skillClass} src="../ranks/0-999.png">`;
-                } else if (skillRating >= 1000 && skillRating < 1500) {
-                  skillImage = `<img ${skillClass} src="../ranks/1000-1499.png">`;
-                } else if (skillRating >= 1500 && skillRating < 2000) {
-                  skillImage = `<img ${skillClass} src="../ranks/1500-1999.png">`;
-                } else if (skillRating >= 2000 && skillRating < 2500) {
-                  skillImage = `<img ${skillClass} src="../ranks/2000-2499.png">`;
-                } else if (skillRating >= 2500 && skillRating < 3000) {
-                  skillImage = `<img ${skillClass} src="../ranks/2500-2999.png">`;
-                } else if (skillRating >= 3000 && skillRating < 3500) {
-                  skillImage = `<img ${skillClass} src="../ranks/3000-3499.png">`;
-                } else if (skillRating >= 3500 && skillRating < 4000 && user.Title != "Honorary GrandMaster") {
-                  skillImage = `<img ${skillClass} src="../ranks/3500-3999.png">`;
-                } else if (skillRating >= 4000 && skillRating < 4200 && user.Title == "GrandMaster Candidate") {
-                  skillImage = `<img ${skillClass} src="../ranks/4000-4199.png">`;
-                } else if (skillRating >= 3000 && skillRating < 4400 && (user.Title == "GrandMaster" || user.Title == "Honorary GrandMaster")) {
-                  skillImage = `<img ${skillClass} src="../ranks/4000-4399.png">`;
-                } else if (skillRating >= 4400) {
-                  skillImage = `<img ${skillClass} src="../ranks/4400.png">`;
-                }
-                console.log(user.SR);
-                document.title = "Profile View " + user.Usernames;
+      const csvPromise = fetch(url)
+        .then((result) => result.text())
+        .then(function (csvtotext) {
+          return csv().fromString(
+            csvtotext.substring(csvtotext.indexOf("\n") + 1)
+          );
+        });
 
-                var options = {
-                  plugins: {
-                    legend: {
-                      display: false,
-                      labels: {
-                        font: {
-                          size: 20,
-                          weight: 1000,
-                        },
-                      },
-                    },
-                  },
-                  responsive: true,
-                  maintainAspectRatio: false,
-                  scales: {
-                    r: {
-                      angleLines: {
-                        display: false,
-                      },
-                      min: 0,
-                      max: 100,
-                      grid: {
-                        color: "rgba(255,255,255,0.125)",
-                      },
-                      pointLabels: {
-                        color: "#fff",
-                        font: {
-                          size: "15rem",
-                          weight: 900,
-                        },
-                      },
-                      ticks: {
-                        display: false,
-                      },
-                    },
-                  },
-                };
+      const getUserIndex = async () => {
+        const csv = await csvPromise;
 
-                var dataLiteracy = {
-                  labels: [`RFX ${user.RFX}`, `TEN ${user.TEN}`, `STA ${user.STA}`, `ACC ${user.ACC}`, `REA ${user.REA}`, `PRE ${user.PRE}`],
-                  datasets: [
-                    {
-                      label: user.Usernames,
-                      backgroundColor: "rgba(255,255,255,0.25)",
-                      borderColor: "rgba(255,255,255,1)",
-                      pointBackgroundColor: "rgba(255,255,255,1)",
-                      pointBorderColor: "#fff",
-                      pointHoverBackgroundColor: "#fff",
-                      pointHoverBorderColor: "rgba(255,255,255,0.1)",
-                      pointColor: "#fff",
-                      data: [user.RFX, user.TEN, user.STA, user.ACC, user.REA, user.PRE],
-                    },
-                  ],
-                };
+        const userIndex = csv.findIndex((row, index) => {
+          if (checkUsername) {
+            return row.Usernames == username.substring(9);
+          } else {
+            return row.uID == username.substring(1);
+          }
+        });
+        return userIndex;
+      };
 
-                console.log(ctx);
-
-                myRadarChart = new Chart(ctx, {
-                  type: "radar",
-                  data: dataLiteracy,
-                  options: options,
-                });
-
-                userimage.innerHTML += `
-                    <div class="flex justify-evenly gap-4 w-auto">
-                      <div class="w-32 lg:w-64 h-auto">
-                        <img class="border-4 border-[#333333] bg-[#333333] w-32 lg:w-64 h-auto rounded-lg" src="https://ameobea.b-cdn.net/osutrack/Mixins/userImage.php?u=${user.uID}" alt=""/>
-                      </div>
-                    
-                    </div>
-                  `;
-
-                userinfo.innerHTML += `
-                    <div class="text-white">
-                        <div class="flex items-center text-[225%]">
-                          <span>${user.Usernames}</span>
-                          ${skillImage}  
-                        </div>
-                        <div class="">
-                          <div class="text-[150%]">Skill Rating: ${user.SR} Δ ${user.Diff} </div>
-                        </div>
-                      </div> 
-                  `;
-
-                userinfo2.innerHTML += `
-                  <div class="text-white">
-                    <hr />
-                    <div class="text-[110%]">${user.Usernames}'s Title: ${user.Title}</div>
-                    <br>
-                    <div class="">Performance Points: ${user.PP}pp</div> 
-                    <div class="">Last update: ${user["Last update"]}</div>
-                    <div class="hover:underline underline-offset-2 hover:text-[#ff66ab]"><a href="https://osu.ppy.sh/users/${user.uID}" target="self">Official Player Profile</a>
-                  </div> 
-                   `;
-
-                profileData.innerHTML += `
-                <div class="text-center">
-                  
-                  <div class="hover:underline">
-                    <a title="Weighted Circle Size">
-                      Weighted CS: ${user.CS}
-                    </a>
-                  </div>
-                  <br>
-                  <div class="hover:underline">
-                    <a title="Weighted Approach Rate">
-                    Weighted AR: ${user.AR}
-                    </a>
-                  </div>
-                  <br>
-                  <div class="hover:underline">
-                    <a title="Weighted Star Rating">
-                    Weighted ✰Rating: ${user["✰R"]}
-                    </a>
-                  </div>
-                  <br>
-                  <div class="hover:underline">
-                    <a title="Weighted Map length">
-                    Weighted Map Length: ${user.Length}
-                    </a>
-                  </div>
-                </div>
-                
-            `;
-
-                profileData2.innerHTML += `
-                <div class="text-center">
-                  <div class="hover:underline">
-                    <a title="Weighted Accuracy">
-                    Weighted Acc: ${user["Acc (%)"]}
-                  </a>
-                  </div>
-                  <br>
-                  <div class="">
-                    <a title="Measure determined by Logarythmic formula on a Standard Deviation of all Statistics aside from Accuracy">
-                    Well-rounded measure: ${user.WRM}
-                  </a>
-                  </div>
-                </div>
-                
-            `;
-
-                ranking.innerHTML += `
-                <div class="text-gray-400 opacity-30 float-right text-[550%] flex" >#${index + 1}</div>
-                <br>
-            `;
-              }
-            });
-          });
+      const createProfile = async (userIndex) => {
+        const csv = await csvPromise;
+        userArray = csv.map((row, index) => row.Usernames);
 
         autocomplete(document.getElementById("myInput"), userArray);
+
+        let skillClass = "class='h-16'";
+        const user = csv[userIndex];
+        let skillImage = "";
+        let skillRating = parseInt(user.SR.replace(/,/g, ""), 10);
+        if (skillRating >= 0 && skillRating < 1000) {
+          skillImage = `<img ${skillClass} src="../ranks/0-999.png">`;
+        } else if (skillRating >= 1000 && skillRating < 1500) {
+          skillImage = `<img ${skillClass} src="../ranks/1000-1499.png">`;
+        } else if (skillRating >= 1500 && skillRating < 2000) {
+          skillImage = `<img ${skillClass} src="../ranks/1500-1999.png">`;
+        } else if (skillRating >= 2000 && skillRating < 2500) {
+          skillImage = `<img ${skillClass} src="../ranks/2000-2499.png">`;
+        } else if (skillRating >= 2500 && skillRating < 3000) {
+          skillImage = `<img ${skillClass} src="../ranks/2500-2999.png">`;
+        } else if (skillRating >= 3000 && skillRating < 3500) {
+          skillImage = `<img ${skillClass} src="../ranks/3000-3499.png">`;
+        } else if (
+          skillRating >= 3500 &&
+          skillRating < 4000 &&
+          user.Title != "Honorary GrandMaster"
+        ) {
+          skillImage = `<img ${skillClass} src="../ranks/3500-3999.png">`;
+        } else if (
+          skillRating >= 4000 &&
+          skillRating < 4200 &&
+          user.Title == "GrandMaster Candidate"
+        ) {
+          skillImage = `<img ${skillClass} src="../ranks/4000-4199.png">`;
+        } else if (
+          skillRating >= 3000 &&
+          skillRating < 4400 &&
+          (user.Title == "GrandMaster" ||
+            user.Title == "Honorary GrandMaster")
+        ) {
+          skillImage = `<img ${skillClass} src="../ranks/4000-4399.png">`;
+        } else if (skillRating >= 4400) {
+          skillImage = `<img ${skillClass} src="../ranks/4400.png">`;
+        }
+        document.title = "Profile View " + user.Usernames;
+
+        var options = {
+          plugins: {
+            legend: {
+              display: false,
+              labels: {
+                font: {
+                  size: 20,
+                  weight: 1000,
+                },
+              },
+            },
+          },
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            r: {
+              angleLines: {
+                display: false,
+              },
+              min: 0,
+              max: 100,
+              grid: {
+                color: "rgba(255,255,255,0.125)",
+              },
+              pointLabels: {
+                color: "#fff",
+                font: {
+                  size: "15rem",
+                  weight: 900,
+                },
+              },
+              ticks: {
+                display: false,
+              },
+            },
+          },
+        };
+
+        var dataLiteracy = {
+          labels: [
+            `RFX ${user.RFX.substring(1)}`,
+            `TEN ${user.TEN.substring(1)}`,
+            `STA ${user.STA.substring(1)}`,
+            `ACC ${user.ACC.substring(1)}`,
+            `REA ${user.REA.substring(1)}`,
+            `PRE ${user.PRE.substring(1)}`,
+          ],
+          datasets: [
+            {
+              label: user.Usernames,
+              backgroundColor: "rgba(255,255,255,0.25)",
+              borderColor: "rgba(255,255,255,1)",
+              pointBackgroundColor: "rgba(255,255,255,1)",
+              pointBorderColor: "#fff",
+              pointHoverBackgroundColor: "#fff",
+              pointHoverBorderColor: "rgba(255,255,255,0.1)",
+              pointColor: "#fff",
+              data: [
+                user.RFX.substring(1),
+                user.TEN.substring(1),
+                user.STA.substring(1),
+                user.ACC.substring(1),
+                user.REA.substring(1),
+                user.PRE.substring(1),
+              ],
+            },
+          ],
+        };
+
+        myRadarChart = new Chart(ctx, {
+          type: "radar",
+          data: dataLiteracy,
+          options: options,
+        });
+
+        userimage.innerHTML += `
+                  <div class="flex justify-evenly gap-4 w-auto">
+                    <div class="w-32 lg:w-64 h-auto">
+                      <img class="border-4 border-[#333333] bg-[#333333] w-32 lg:w-64 h-auto rounded-lg" src="https://ameobea.b-cdn.net/osutrack/Mixins/userImage.php?u=${user.uID}" alt=""/>
+                    </div>
+
+                  </div>
+                `;
+
+        userinfo.innerHTML += `
+                  <div class="text-white">
+                      <div class="flex items-center text-[225%]">
+                        <span>${user.Usernames}</span>
+                        ${skillImage}
+                      </div>
+                      <div class="">
+                        <div class="text-[150%]">Skill Rating: ${user.SR} Δ ${user.Diff} </div>
+                      </div>
+                    </div>
+                `;
+
+        userinfo2.innerHTML += `
+                <div class="text-white">
+                  <hr />
+                  <div class="text-[110%]">${user.Usernames}'s Title: ${user.Title}</div>
+                  <br>
+                  <div class="">Performance Points: ${user.PP}pp</div>
+                  <div class="">Last update: ${user["Last update"]}</div>
+                  <div class="hover:underline underline-offset-2 hover:text-[#ff66ab]"><a href="https://osu.ppy.sh/users/${user.uID}" target="self">Official Player Profile</a>
+                </div>
+                  `;
+
+        profileData.innerHTML += `
+              <div class="text-center">
+
+                <div class="hover:underline">
+                  <a title="Weighted Circle Size">
+                    Weighted CS: ${user.CS}
+                  </a>
+                </div>
+                <br>
+                <div class="hover:underline">
+                  <a title="Weighted Approach Rate">
+                  Weighted AR: ${user.AR}
+                  </a>
+                </div>
+                <br>
+                <div class="hover:underline">
+                  <a title="Weighted Star Rating">
+                  Weighted ✰Rating: ${user["✰R"]}
+                  </a>
+                </div>
+                <br>
+                <div class="hover:underline">
+                  <a title="Weighted Map length">
+                  Weighted Map Length: ${user.Length}
+                  </a>
+                </div>
+              </div>
+
+          `;
+        profileData2.innerHTML += `
+              <div class="text-center">
+                <div class="hover:underline">
+                  <a title="Weighted Accuracy">
+                  Weighted Acc: ${user["Acc (%)"]}
+                </a>
+                </div>
+                <br>
+                <div class="">
+                  <a title="Measure determined by Logarithmic formula on a Standard Deviation of all Statistics aside from Accuracy">
+                  Well-rounded measure: ${user.WRM}
+                </a>
+                </div>
+              </div>
+
+          `;
+
+        ranking.innerHTML += `
+              <div class="text-gray-400 opacity-30 float-right text-[550%] flex" >#${userIndex + 1
+          }</div>
+              <br>
+          `;
       }
-    </script>
-  </body>
+
+      const userIndex = await getUserIndex();
+      createProfile(userIndex);
+    };
+  </script>
+</body>
+
 </html>

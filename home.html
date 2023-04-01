@@ -84,11 +84,11 @@
     <script src="profiles/search.js"></script>
     <script>
       let usernames = [];
-      let aurl = "https://docs.google.com/spreadsheets/d/1s-ItBZwDzWb_taDPD2L2jrUbNzl4pxjSgXcE5dza4tc/export?format=csv&id=1s-ItBZwDzWb_taDPD2L2jrUbNzl4pxjSgXcE5dza4tc&gid=308409034";
+      let aurl = "https://docs.google.com/spreadsheets/d/1s-ItBZwDzWb_taDPD2L2jrUbNzl4pxjSgXcE5dza4tc/export?format=csv&id=1s-ItBZwDzWb_taDPD2L2jrUbNzl4pxjSgXcE5dza4tc&gid=1043073592";
       fetch(aurl)
         .then((result) => result.text())
         .then(function (csvtotext) {
-          return csv().fromString(csvtotext);
+          return csv().fromString(csvtotext.substring(csvtotext.indexOf("\n") + 1));
         })
         .then(function (csv) {
           csv.forEach(function (row, index) {

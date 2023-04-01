@@ -108,14 +108,17 @@ let onChangeView = (args) => {
 
 // data of users
 let request = new XMLHttpRequest();
+
 request.onreadystatechange = async () => {
   if (request.readyState == 4 && request.status == 200) {
-    data = await csv().fromString(request.responseText);
+    let csvData = request.responseText.substring(request.responseText.indexOf('\n') + 1);
+    data = await csv().fromString(csvData);
     onChangeView();
   } else if (request.readyState == 4 && request.status != 200) {
     onChangeView();
   }
 };
+
 request.open("GET", "https://docs.google.com/spreadsheets/d/1s-ItBZwDzWb_taDPD2L2jrUbNzl4pxjSgXcE5dza4tc/export?format=csv&id=1s-ItBZwDzWb_taDPD2L2jrUbNzl4pxjSgXcE5dza4tc&gid=1043073592", true);
 request.send();
 

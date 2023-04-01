@@ -67,14 +67,12 @@
       fetch(aurl)
         .then((result) => result.text())
         .then(function (csvtotext) {
-          return csv().fromString(csvtotext);
+          return csv().fromString(csvtotext.substring(csvtotext.indexOf("\n") + 1));
         })
         .then(function (csv) {
-          csv.forEach(function (row, index) {
-            usernames.push(row.Usernames);
-          });
+          usernames = csv.map((row, index) => row.Usernames)
+          autocomplete(document.getElementById("myInput"), usernames);
         });
-      autocomplete(document.getElementById("myInput"), usernames);
     </script>
   </body>
 </html>
