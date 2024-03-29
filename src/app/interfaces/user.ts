@@ -1,0 +1,30 @@
+export interface User {
+    ranking: number;
+    username: string;
+    uId: number;
+    pp: number;
+    accPercentage: string;
+    starRating: number;
+    cs: number;
+    ar: number;
+    length: string;
+    rating: number;
+    country: string;
+    countryName: string;
+    sr: number;
+    rfx: number;
+    ten: number;
+    sta: number;
+    acc: number;
+    rea: number;
+    pre: number;
+    oldRfx: number;
+    oldTen: number;
+    oldSta: number;
+    oldAcc: number;
+    oldRea: number;
+    oldPre: number;
+    dSr: number;
+    wrm: number;
+    title: string;
+}

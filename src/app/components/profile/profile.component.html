@@ -1,0 +1,67 @@
+<navbar></navbar>
+<div class="all">
+    <div class="box">
+        <div class="container" *ngIf="User">
+            <div class="profile">
+                <div>
+                    <a target="self" href="https://osu.ppy.sh/users/{{User.user.uId}}"><img class="profile-image"
+                            src="https://a.ppy.sh/{{User.user.uId}}?.jpeg"></a>
+                    <div class="title-and-rank">
+                        <span class="title">{{User.user.title}}</span>
+                        <span>Rank: #{{User.ranking}}</span>
+                    </div>
+                </div>
+                <div class="rawdata">
+                    <div class="stats-text">
+                        <p>Weighted CS: </p>
+                        <p>Weighted AR:</p>
+                        <p>Weighted ✰Rating:</p>
+                        <p>Weighted Map Length:</p>
+                    </div>
+                    <div class="stats">
+                        <p>{{User.user.cs}} </p>
+                        <p>{{User.user.ar}}</p>
+                        <p>{{User.user.starRating}}</p>
+                        <p>{{User.user.length}}</p>
+                    </div>
+                    <!-- TODO -->
+                    <!-- <div class="row2">
+                    <div>
+                        <p>#2</p>
+                    </div>
+                    <div>
+                        <p>#160</p>
+                    </div>
+                    <div>
+                        <p>#1</p>
+                    </div>
+                    <div>
+                        <p>#28</p>
+                    </div>
+                </div> -->
+                </div>
+            </div>
+            <div class="statistics">
+                <div class="box">
+                    <div class="uname">
+                        <span class="username">{{User.user.username}}</span>
+                        <p>Placed {{User.user.sr}} SR with a well-rounded measure of {{User.user.wrm}}</p>
+                    </div>
+                    <div class="profile-flag">
+                        <img class="country"
+                            [src]="'https://flagicons.lipis.dev/flags/4x3/' + User.user.country + '.svg'" />
+                    </div>
+                </div>
+                <ngx-charts-bar-vertical class="chart" [animations]="false" [view]="view" [results]="single"
+                    [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend"
+                    [showXAxisLabel]="showXAxisLabel" [legendTitle]="'Skill'" [showYAxisLabel]="showYAxisLabel"
+                    [xAxisLabel]="xAxisLabel" [yScaleMax]="100" [customColors]="customColors" style="fill: white;">
+                    (select)="onSelect($event)">
+                </ngx-charts-bar-vertical>
+                <div class="danbadge">
+                    <div *ngIf="dan">With {{dan}} being their highest dan pass.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

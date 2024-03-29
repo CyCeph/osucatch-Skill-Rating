@@ -1,0 +1,19 @@
+<div class="navbar">
+    <li class="listnav"><a routerLink="/home"><img class="logo" src="assets\Logo.png"> Home</a></li>
+    <li class="listnav"><a routerLink="/ranking">Ranking</a></li>
+    <li class="listnav"><a
+            href="https://docs.google.com/spreadsheets/d/1s-ItBZwDzWb_taDPD2L2jrUbNzl4pxjSgXcE5dza4tc/edit#gid=1676553494"
+            target="self">Spreadsheet</a></li>
+    <li class="listnav"><a href="https://discord.gg/PQknGc5" target="self">Discord</a></li>
+    <div class="autocomplete">
+        <form class="example-form">
+            <mat-form-field color="accent" *ngIf="users">
+                <mat-label>Select a user</mat-label>
+                <input type="text" placeholder="Pick one" matInput [formControl]="formControl" [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete" (optionSelected)="navigateToUser($event)">
+                    <mat-option *ngFor="let user of filteredOptions | async" [value]="user">{{user}}</mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </form>
+    </div>
+</div>
