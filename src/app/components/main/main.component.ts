@@ -7,7 +7,7 @@ import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/materi
 import { NgxSpinnerService } from 'ngx-spinner';
 import { FormControl } from '@angular/forms';
 import { Observable, map, startWith } from 'rxjs';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 
 
 
@@ -18,13 +18,13 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 })
 
 export class MainComponent implements OnInit, AfterViewInit {
-
   constructor(private fetch: SheetFetchService, private http: HttpClient) {
   }
 
   @ViewChild(MatSort) sort: MatSort;
 
   filteredOptions: Observable<string[]>;
+
   ngOnInit() {
     this.filteredOptions = this.formControl.valueChanges.pipe(
       startWith(''),
@@ -43,9 +43,9 @@ export class MainComponent implements OnInit, AfterViewInit {
       if (!data) {
         return;
       }
-      this.users = data.slice(2, 10002)
+      this.users = data
       this.userCountries = Array.from(new Set(this.users.map(x => x.countryName).sort()))
-      this.dataSource = new MatTableDataSource(this.users)
+      this.dataSource = new MatTableDataSource(this.users.slice(2, 2 + this.pageSize))
       this.dataSource.sort = this.sort;
       this.dataSource.filterPredicate = (data: User, filter: string) => {
         return data.countryName == filter;
@@ -64,6 +64,11 @@ export class MainComponent implements OnInit, AfterViewInit {
   public extraColumns = ['Global Rank', 'Country Rank', 'country', 'uId', 'username', 'pp', 'accPercentage', 'starRating', 'ar', 'cs', 'length', 'title', 'sr', 'dSr', 'rfx', 'ten', 'sta', 'acc', 'rea', 'pre', 'wrm'];
   public columnsToDisplay = this.basicColumns
   public formControl = new FormControl('');
+
+  public currentPage = 0;
+  public length = 9998;
+  public pageSize = 10;
+  public pageSizeOptions = [10, 25, 50, 100, this.length];
 
   public toggleExtras(): void {
     if (!this.showExtraColumns) {
@@ -84,5 +89,15 @@ export class MainComponent implements OnInit, AfterViewInit {
       this.dataSource.filter = ""
     }
 
+  }
+
+  public onPageChange(e: PageEvent) {
+    this.currentPage = e.pageIndex
+    this.length = e.length
+    this.pageSize = e.pageSize
+
+    var skip = this.currentPage * this.pageSize + 2;
+    this.dataSource = new MatTableDataSource(this.users.slice(skip, skip + this.pageSize))
+    this.dataSource.sort = this.sort
   }
 }
