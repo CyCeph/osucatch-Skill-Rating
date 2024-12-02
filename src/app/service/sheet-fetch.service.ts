@@ -34,47 +34,48 @@ export class SheetFetchService {
           output.map((user: any, idx: number) => {
             if (true) {
               let average =
-                (parseFloat(user[10]) +
-                  parseFloat(user[11]) +
-                  parseFloat(user[12]) +
+                (parseFloat(user[12]) +
                   parseFloat(user[13]) +
                   parseFloat(user[14]) +
-                  parseFloat(user[15])) /
+                  parseFloat(user[15]) +
+                  parseFloat(user[16]) +
+                  parseFloat(user[17])) /
                 6;
 
-              let sr = Math.pow(parseFloat(user[9]) / 5000, 0.5);
+              let sr = Math.pow(parseFloat(user[11]) / 5000, 0.5);
 
               let score = (100 * sr + average) / 2;
 
               const newUser: User = {
-                ranking: idx - 1,
-                username: user[0],
-                uId: parseInt(user[1]),
-                pp: user[2],
-                accPercentage: user[3],
-                starRating: user[4],
-                ar: user[5],
-                cs: user[6],
-                length: user[7],
+                ranking: user[0],
+                CountryRanking: user[1],
+                username: user[2],
+                uId: parseInt(user[3]),
+                pp: user[4],
+                accPercentage: user[5],
+                starRating: user[6],
+                ar: user[7],
+                cs: user[8],
+                length: user[9],
                 rating: Math.round(score),
-                country: this.parseCountry(user[9].split(' ')[0]),
-                countryName: user[9],
-                sr: user[10],
-                rfx: parseFloat(user[11]),
-                ten: parseFloat(user[12]),
-                sta: parseFloat(user[13]),
-                acc: parseFloat(user[14]),
-                rea: parseFloat(user[15]),
-                pre: parseFloat(user[16]),
-                wrm: Math.round(user[17] * 10) / 10,
-                title: user[18],
-                oldRfx: parseFloat(user[29]),
-                oldTen: parseFloat(user[30]),
-                oldSta: parseFloat(user[31]),
-                oldAcc: parseFloat(user[32]),
-                oldRea: parseFloat(user[33]),
-                oldPre: parseFloat(user[34]),
-                dSr: parseFloat(user[35])
+                country: this.parseCountry(user[11].split(' ')[0]),
+                countryName: user[11],
+                sr: user[12],
+                rfx: parseFloat(user[13]),
+                ten: parseFloat(user[14]),
+                sta: parseFloat(user[15]),
+                acc: parseFloat(user[16]),
+                rea: parseFloat(user[17]),
+                pre: parseFloat(user[18]),
+                wrm: Math.round(user[19] * 10) / 10,
+                title: user[20],
+                oldRfx: parseFloat(user[31]),
+                oldTen: parseFloat(user[32]),
+                oldSta: parseFloat(user[33]),
+                oldAcc: parseFloat(user[34]),
+                oldRea: parseFloat(user[35]),
+                oldPre: parseFloat(user[36]),
+                dSr: parseFloat(user[37])
               }
               users.push(newUser)
             }

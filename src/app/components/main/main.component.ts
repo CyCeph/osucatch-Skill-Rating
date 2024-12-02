@@ -7,6 +7,7 @@ import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/materi
 import { NgxSpinnerService } from 'ngx-spinner';
 import { FormControl } from '@angular/forms';
 import { Observable, map, startWith } from 'rxjs';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 
 
 
@@ -59,8 +60,8 @@ export class MainComponent implements OnInit, AfterViewInit {
   public userCountry: string;
   public loading: boolean;
   private showExtraColumns: boolean = false;
-  public basicColumns = ['position', 'country', 'uId', 'username', 'title', 'sr', 'rfx', 'ten', 'sta', 'acc', 'rea', 'pre', 'wrm'];
-  public extraColumns = ['position', 'country', 'uId', 'username', 'pp', 'accPercentage', 'starRating', 'ar', 'cs', 'length', 'title', 'sr', 'dSr', 'rfx', 'ten', 'sta', 'acc', 'rea', 'pre', 'wrm'];
+  public basicColumns = ['Global Rank', 'Country Rank', 'country', 'uId', 'username', 'title', 'sr', 'rfx', 'ten', 'sta', 'acc', 'rea', 'pre', 'wrm'];
+  public extraColumns = ['Global Rank', 'Country Rank', 'country', 'uId', 'username', 'pp', 'accPercentage', 'starRating', 'ar', 'cs', 'length', 'title', 'sr', 'dSr', 'rfx', 'ten', 'sta', 'acc', 'rea', 'pre', 'wrm'];
   public columnsToDisplay = this.basicColumns
   public formControl = new FormControl('');
 

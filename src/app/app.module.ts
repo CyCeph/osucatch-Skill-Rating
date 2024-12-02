@@ -22,9 +22,10 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 @NgModule({
   declarations: [AppComponent, MainComponent, HomepageComponent, ProfileComponent, NavbarComponent,],
-  imports: [MatSlideToggleModule, MatInputModule, FormsModule, BrowserModule, HttpClientModule, AppRoutingModule, NgxChartsModule, BrowserAnimationsModule, MatTableModule, MatSortModule, MatFormFieldModule, MatSelectModule, MatAutocompleteModule, ReactiveFormsModule],
+  imports: [MatSlideToggleModule, MatInputModule, FormsModule, BrowserModule, HttpClientModule, AppRoutingModule, NgxChartsModule, BrowserAnimationsModule, MatTableModule, MatSortModule, MatFormFieldModule, MatSelectModule, MatAutocompleteModule, ReactiveFormsModule, MatPaginatorModule],
   providers: [
     {
       provide: APP_INITIALIZER,
