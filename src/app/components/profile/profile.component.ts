@@ -1,8 +1,8 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ProfileUser } from 'src/app/interfaces/profile-user';
 import { SingleBar } from 'src/app/interfaces/single-bar';
 import { SheetFetchService } from 'src/app/service/sheet-fetch.service';
+import { User } from 'src/app/interfaces/user';
 
 @Component({
   selector: 'app-profile',
@@ -57,7 +57,7 @@ export class ProfileComponent implements OnInit {
   }
 
 
-  public User: ProfileUser
+  public User: User
 
   public dan: string
   private route = inject(ActivatedRoute)
@@ -74,21 +74,17 @@ export class ProfileComponent implements OnInit {
         return;
       }
       const index = users.map(x => x.uId).indexOf(parseInt(id))
-      const user: ProfileUser = {
-        ranking: index - 1,
-        user: users[index]
-      }
 
-      this.User = user
+      this.User = users[index]
 
-      this.single.push(this.createBar(user.user.rfx, "RFX"))
-      this.single.push(this.createBar(user.user.ten, "TEN"))
-      this.single.push(this.createBar(user.user.sta, "STA"))
-      this.single.push(this.createBar(user.user.acc, "ACC"))
-      this.single.push(this.createBar(user.user.rea, "REA"))
-      this.single.push(this.createBar(user.user.pre, "PRE"))
+      this.single.push(this.createBar(this.User.rfx, "RFX"))
+      this.single.push(this.createBar(this.User.ten, "TEN"))
+      this.single.push(this.createBar(this.User.sta, "STA"))
+      this.single.push(this.createBar(this.User.acc, "ACC"))
+      this.single.push(this.createBar(this.User.rea, "REA"))
+      this.single.push(this.createBar(this.User.pre, "PRE"))
 
-      this.dataService.getHighestDan(user.user.uId).subscribe(x => {
+      this.dataService.getHighestDan(this.User.uId).subscribe(x => {
         if (x) {
           this.dan = x
         }
